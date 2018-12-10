@@ -171,10 +171,11 @@ let anotherRick=characters.Clone(ricksSingleton);
 console.assert(anotherRick.ondas==='altas');
 let doofous=characters.Clone(JerrySingleton);
 Object.defineProperty(doofous, "extend",  { value: function (p) {
-    let properties=Object.getOwnPropertyNames(Object.getPrototypeOf(p));
+    console.log(Object.getPrototypeOf(Object.getPrototypeOf(p)));
+    let properties=Object.getOwnPropertyNames(Object.getPrototypeOf(Object.getPrototypeOf(p)));
     for (let property in properties){
         if(!Object.getOwnPropertyNames(this).includes(properties[property])) {
-            let descriptor = Object.getOwnPropertyDescriptor(p, properties[property])
+            let descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Object.getPrototypeOf(p)), properties[property]);
             Object.defineProperty(this, properties[property], descriptor)
         }
     }
