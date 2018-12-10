@@ -189,4 +189,4 @@ console.assert(doofous.id == "J-19-Z7");
 console.assert(doofous.ondas == "altas");
 console.log(doofous);
 console.assert(doofous.monedas.length == 4);
-console.assert(doufous.speak() == "Tengo una colección de monedas antiguas raras!");
+console.assert(doofous.speak() == "Tengo una colección de monedas antiguas raras!");
