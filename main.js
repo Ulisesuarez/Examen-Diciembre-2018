@@ -123,7 +123,7 @@ console.assert(universo.length == 2);
  * 
  * La pistola añade a su historial "Fart".
  */
-console.log(universo);
+
 console.assert(universo["Fart"].length == 5);
 console.assert(universo["Tierra"].length == 1);
 console.assert(gun.historial.length == 2);
@@ -167,9 +167,25 @@ console.assert(gun.historial.length == 3);
 /**
  * Crea un Doofus Rick segun se indica en el README
  */
-
+let anotherRick=characters.Clone(ricksSingleton);
+console.assert(anotherRick.ondas==='altas');
+let doofous=characters.Clone(JerrySingleton);
+Object.defineProperty(doofous, "extend",  { value: function (p) {
+    let properties=Object.getOwnPropertyNames(Object.getPrototypeOf(p));
+    for (let property in properties){
+        if(!Object.getOwnPropertyNames(this).includes(properties[property])) {
+            let descriptor = Object.getOwnPropertyDescriptor(p, properties[property])
+            Object.defineProperty(this, properties[property], descriptor)
+        }
+    }
+        
+    }, writable: false, enumerable:false, configurable:false });
+doofous.extend(anotherRick);
+console.log(doofous);
+doofous.setId("J-19-Z7");
 console.assert(doofous);
 console.assert(doofous.id == "J-19-Z7");
 console.assert(doofous.ondas == "altas");
-console.assert(doufus.monedas.length == 4);
+console.log(doofous);
+console.assert(doofous.monedas.length == 4);
 console.assert(doufous.speak() == "Tengo una colección de monedas antiguas raras!");

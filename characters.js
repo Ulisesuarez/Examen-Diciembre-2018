@@ -2,8 +2,8 @@
 
 function Rick() {
     this.id = "C-137";
-    this.ondas = "altas";
 }
+Rick.prototype.ondas= "altas";
 Rick.prototype.habla= function (){
     return "Es Rick-dículo!";
 };
@@ -17,9 +17,9 @@ Rick.prototype.setId=function(id){
 exports.Rick=Rick;
 function Morty() {
     this.id = "earthMorty";
-    this.ondas = "bajas";
     this.partner ={};
 }
+Morty.prototype.ondas= "bajas";
 Morty.prototype.habla= function (){
     return "Oohh man!";
 };
