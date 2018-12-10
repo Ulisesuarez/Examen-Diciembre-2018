@@ -3,11 +3,12 @@
  * Importa los módulos de tus clases 
  */
 characters=require('./characters');
-
+universoClass=require('./universo');
+singleton=require('./singletonFactory');
 /**
  * Crea el objeto Rick
  */
-const ricksSingleton=characters.singletonFactory(characters.Rick);
+const ricksSingleton=singleton.singletonFactory(characters.Rick);
 let protoRick=ricksSingleton.get();
 console.assert(protoRick);
 console.assert(protoRick.id == "C-137");
@@ -17,7 +18,7 @@ console.assert(protoRick.habla() == "Es Rick-dículo!");
 /**
  * Crea el objeto Morty
  */
-const MortySingleton=characters.singletonFactory(characters.Morty);
+const MortySingleton=singleton.singletonFactory(characters.Morty);
 let protoMorty=MortySingleton.get();
 protoMorty.setPartner(protoRick);
 
@@ -31,7 +32,7 @@ console.assert(protoMorty.habla() == "Oohh man!");
 /**
  * Crea el objeto Jerry
  */
-const JerrySingleton=characters.singletonFactory(characters.Jerry);
+const JerrySingleton=singleton.singletonFactory(characters.Jerry);
 let jerry=JerrySingleton.get();
 
 console.assert(jerry);
@@ -74,8 +75,10 @@ console.assert(clonMorty.partner == clonRick);
 /**
  * Crea el objeto universo
  */
-
+universoSingleton=singleton.singletonFactory(universoClass.Universo);
+universo=universoSingleton.get();
 console.assert(universo);
+console.log(universo);
 console.assert(Object.getPrototypeOf(universo) != Array.prototype);
 console.assert(universo.length == 0);
 
@@ -84,11 +87,13 @@ console.assert(universo.length == 0);
  * mete en él a los 6 objetos que has creado (Rick, Morty y Jerry, 
  * 2 rick-clones y 1 clon de Morty) y añádelo al objeto `universo`.
  */
-
+tierra=[protoRick,clonRick,otroRick,protoMorty,clonMorty,jerry];
+universo.addDimension("Tierra",tierra);
 console.assert(tierra);
 console.assert(Object.getPrototypeOf(tierra) == Array.prototype);
 console.assert(tierra.length == 6);
 console.assert("Tierra" in universo);
+console.log(universo);
 console.assert(universo.length == 1);
 
 /**
@@ -100,9 +105,12 @@ console.assert(universo.length == 1);
  * Rick dispara la pistola y se añade al universo la dimensión "Fart"
  *  */
 
+
+let gun = Object.create(universoClass.Gun(universo));
+gun.primeraDimension('Tierra');
 console.assert(gun);
 console.assert(gun.historial.length == 1);
-
+protoRick.disparar(gun,"Fart");
 console.assert("Fart" in universo);
 console.assert(universo.length == 2);
 
@@ -115,7 +123,7 @@ console.assert(universo.length == 2);
  * 
  * La pistola añade a su historial "Fart".
  */
-
+console.log(universo);
 console.assert(universo["Fart"].length == 5);
 console.assert(universo["Tierra"].length == 1);
 console.assert(gun.historial.length == 2);
@@ -133,7 +141,7 @@ console.assert(gun.historial.length == 2);
 /**
  * Rick dispara la pistola y se añade al universo la dimensión "Coaches".
  */
-
+protoRick.disparar(gun,"Coach");
 console.assert("Coach" in universo);
 console.assert(universo.length == 3);
 
@@ -148,7 +156,7 @@ console.assert(universo.length == 3);
  * Coaches, Fart, Tierra.
  */
 
-console.assert(universo["Coaches"].length == 5);
+console.assert(universo["Coach"].length == 5);
 console.assert(universo["Fart"].length == 0);
 console.assert(universo["Tierra"].length == 1);
 console.log(gun.scan());

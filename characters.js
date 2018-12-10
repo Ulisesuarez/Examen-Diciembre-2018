@@ -1,16 +1,5 @@
 // singleton de Rick
-function singletonFactory(character) {
 
-    const prototipo = new character();
-    let llamadas=0;
-    return {
-        get: function() {
-            return prototipo;
-        },
-        "llamadas": llamadas++
-    };
-}
-exports.singletonFactory=singletonFactory;
 function Rick() {
     this.id = "C-137";
     this.ondas = "altas";
@@ -19,8 +8,8 @@ Rick.prototype.habla= function (){
     return "Es Rick-dículo!";
 };
 
-Rick.prototype.disparar=function(pistola){
-    pistola();
+Rick.prototype.disparar=function(pistola,dimension){
+    pistola.disparar(dimension);
 };
 Rick.prototype.setId=function(id){
     this.id=id;
