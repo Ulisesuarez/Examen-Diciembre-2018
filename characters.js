@@ -22,3 +22,19 @@ Rick.prototype.disparar=function(pistola){
     pistola();
 };
 exports.Rick=Rick;
+function Morty() {
+    this.id = "earthMorty";
+    this.ondas = "bajas";
+    this.partner ={};
+}
+Morty.prototype.habla= function (){
+    return "Oohh man!";
+};
+
+Morty.prototype.setPartner=function(partner){
+    this.partner=partner;
+};
+Morty.prototype.id=function(id){
+    this.id=id;
+};
+exports.Morty=Morty;

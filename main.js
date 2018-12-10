@@ -7,8 +7,8 @@ chartacters=require('./characters');
 /**
  * Crea el objeto Rick
  */
-ricksSingleton=chartacters.singletonFactory(chartacters.Rick);
-protoRick=ricksSingleton.get();
+const ricksSingleton=chartacters.singletonFactory(chartacters.Rick);
+let protoRick=ricksSingleton.get();
 console.assert(protoRick);
 console.assert(protoRick.id == "C-137");
 console.assert(protoRick.ondas == "altas");
@@ -17,6 +17,9 @@ console.assert(protoRick.habla() == "Es Rick-dículo!");
 /**
  * Crea el objeto Morty
  */
+const MortySingleton=chartacters.singletonFactory(chartacters.Morty);
+let protoMorty=MortySingleton.get();
+protoMorty.setPartner(protoRick);
 
 console.assert(protoMorty);
 console.assert(protoMorty.id == "earthMorty");
