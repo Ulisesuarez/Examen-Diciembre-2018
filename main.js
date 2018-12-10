@@ -2,16 +2,17 @@
 /** 
  * Importa los módulos de tus clases 
  */
-
+chartacters=require('./characters');
 
 /**
  * Crea el objeto Rick
  */
-
+ricksSingleton=chartacters.singletonFactory(chartacters.Rick);
+protoRick=ricksSingleton.get();
 console.assert(protoRick);
 console.assert(protoRick.id == "C-137");
 console.assert(protoRick.ondas == "altas");
-console.assert(protoRick.habla == "Es Rick-dículo!");
+console.assert(protoRick.habla() == "Es Rick-dículo!");
 
 /**
  * Crea el objeto Morty
@@ -21,7 +22,7 @@ console.assert(protoMorty);
 console.assert(protoMorty.id == "earthMorty");
 console.assert(protoMorty.ondas == "bajas");
 console.assert(protoMorty.partner == protoRick);
-console.assert(protoMorty.habla == "Oohh man!");
+console.assert(protoMorty.habla() == "Oohh man!");
 
 
 /**
