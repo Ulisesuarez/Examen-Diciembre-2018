@@ -2,11 +2,12 @@
 function singletonFactory(character) {
 
     const prototipo = new character();
-
+    let llamadas=0;
     return {
         get: function() {
             return prototipo;
-        }
+        },
+        "llamadas": llamadas++
     };
 }
 exports.singletonFactory=singletonFactory;
@@ -54,3 +55,10 @@ Jerry.prototype.monedas= function (){
 
 
 exports.Jerry=Jerry;
+
+function Clone(factory){
+let character = Object.create(factory.get());
+character.id= character.id + factory.llamadas;
+return character;
+}
+exports.Clone=Clone;

@@ -2,12 +2,12 @@
 /** 
  * Importa los módulos de tus clases 
  */
-chartacters=require('./characters');
+characters=require('./characters');
 
 /**
  * Crea el objeto Rick
  */
-const ricksSingleton=chartacters.singletonFactory(chartacters.Rick);
+const ricksSingleton=characters.singletonFactory(characters.Rick);
 let protoRick=ricksSingleton.get();
 console.assert(protoRick);
 console.assert(protoRick.id == "C-137");
@@ -17,7 +17,7 @@ console.assert(protoRick.habla() == "Es Rick-dículo!");
 /**
  * Crea el objeto Morty
  */
-const MortySingleton=chartacters.singletonFactory(chartacters.Morty);
+const MortySingleton=characters.singletonFactory(characters.Morty);
 let protoMorty=MortySingleton.get();
 protoMorty.setPartner(protoRick);
 
@@ -31,7 +31,7 @@ console.assert(protoMorty.habla() == "Oohh man!");
 /**
  * Crea el objeto Jerry
  */
-const JerrySingleton=chartacters.singletonFactory(chartacters.Jerry);
+const JerrySingleton=characters.singletonFactory(characters.Jerry);
 let jerry=JerrySingleton.get();
 
 console.assert(jerry);
@@ -44,21 +44,25 @@ console.assert(jerry.speak() == "Tengo una colección de monedas antiguas raras!
  * Crea 2 Rick-clones y 1 clon de Morty
  * y asocia como partner de ese Morty a uno de los Rick-clones.  
  */
-
+clonRick= characters.Clone(ricksSingleton);
 console.assert(clonRick);
 console.assert(protoRick != clonRick);
 console.assert(Object.getPrototypeOf(clonRick) == protoRick);
 console.assert(clonRick.id != "C-137");
 console.assert(clonRick.ondas == "altas");
-console.assert(clonRick.habla == "Es Rick-dículo!");
+console.assert(clonRick.habla() == "Es Rick-dículo!");
+
+otroRick= characters.Clone(ricksSingleton);
 
 console.assert(otroRick);
 console.assert(protoRick != otroRick);
 console.assert(Object.getPrototypeOf(otroRick) == protoRick);
 console.assert(otroRick.id != "C-137");
 console.assert(otroRick.ondas == "altas");
-console.assert(otroRick.habla == "Es Rick-dículo!");
+console.assert(otroRick.habla() == "Es Rick-dículo!");
 
+clonMorty= characters.Clone(MortySingleton);
+clonMorty.setPartner(clonRick);
 console.assert(clonMorty);
 console.assert(clonMorty != protoMorty);
 console.assert(Object.getPrototypeOf(clonMorty) == protoMorty);
