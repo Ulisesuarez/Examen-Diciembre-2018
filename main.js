@@ -31,6 +31,8 @@ console.assert(protoMorty.habla() == "Oohh man!");
 /**
  * Crea el objeto Jerry
  */
+const JerrySingleton=chartacters.singletonFactory(chartacters.Jerry);
+let jerry=JerrySingleton.get();
 
 console.assert(jerry);
 console.assert(jerry.id = "Jerry");

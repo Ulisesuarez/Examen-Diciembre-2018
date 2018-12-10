@@ -21,6 +21,9 @@ Rick.prototype.habla= function (){
 Rick.prototype.disparar=function(pistola){
     pistola();
 };
+Rick.prototype.setId=function(id){
+    this.id=id;
+};
 exports.Rick=Rick;
 function Morty() {
     this.id = "earthMorty";
@@ -34,7 +37,20 @@ Morty.prototype.habla= function (){
 Morty.prototype.setPartner=function(partner){
     this.partner=partner;
 };
-Morty.prototype.id=function(id){
+Morty.prototype.setId=function(id){
     this.id=id;
 };
 exports.Morty=Morty;
+function Jerry() {
+    this.id = "Jerry";
+    this.monedas =["R2-D2","R2-D2","R2-D2","R2-D2"];
+}
+Jerry.prototype.speak= function (){
+    return "Tengo una colección de monedas antiguas raras!";
+};
+Jerry.prototype.monedas= function (){
+    return this.monedas;
+};
+
+
+exports.Jerry=Jerry;
