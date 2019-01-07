@@ -3,51 +3,55 @@
 function Rick() {
     this.id = "C-137";
 }
-Rick.prototype.ondas= "altas";
-Rick.prototype.habla= function (){
+Rick.prototype.ondas = "altas";
+Rick.prototype.habla = function () {
     return "Es Rick-dículo!";
 };
 
-Rick.prototype.disparar=function(pistola,dimension){
-    pistola.disparar(dimension);
+Rick.prototype.disparar = function (arma, ...args) {
+    arma.disparar(...args);
 };
-Rick.prototype.setId=function(id){
-    this.id=id;
+Rick.prototype.setId = function (id) {
+    this.id = id;
 };
-exports.Rick=Rick;
+exports.Rick = Rick;
+
+
 function Morty() {
     this.id = "earthMorty";
-    this.partner ={};
+    this.partner = {};
 }
-Morty.prototype.ondas= "bajas";
-Morty.prototype.habla= function (){
+Morty.prototype.ondas = "bajas";
+Morty.prototype.habla = function () {
     return "Oohh man!";
 };
 
-Morty.prototype.setPartner=function(partner){
-    this.partner=partner;
+Morty.prototype.setPartner = function (partner) {
+    this.partner = partner;
 };
-Morty.prototype.setId=function(id){
-    this.id=id;
+Morty.prototype.setId = function (id) {
+    this.id = id;
 };
-exports.Morty=Morty;
+exports.Morty = Morty;
+
+
 function Jerry() {
     this.id = "Jerry";
-    this.monedas =["R2-D2","R2-D2","R2-D2","R2-D2"];
 }
-Jerry.prototype.speak= function (){
+Jerry.prototype.monedasArray = ["R2-D2", "R2-D2", "R2-D2", "R2-D2"];
+Jerry.prototype.speak = function () {
     return "Tengo una colección de monedas antiguas raras!";
 };
-Jerry.prototype.monedas= function (){
-    return this.monedas;
-};
+Jerry.prototype.monedas = (function () {
+    return Jerry.prototype.monedasArray;
+})();
 
 
-exports.Jerry=Jerry;
+exports.Jerry = Jerry;
 
-function Clone(factory){
-let character = Object.create(factory.get());
-character.id= character.id + factory.llamadas;
-return character;
+function Clone(factory) {
+    let character = Object.create(factory.get());
+    character.id = character.id + factory.llamadas;
+    return character;
 }
-exports.Clone=Clone;
+exports.Clone = Clone;
