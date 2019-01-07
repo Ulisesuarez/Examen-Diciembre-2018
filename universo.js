@@ -27,5 +27,6 @@ function Gun(universo) {
         this.universo[anteriorDimension] = this.universo[anteriorDimension]
                                             .filter(character => noCruzan.includes(character.id));
     };
-return this;}
+    return this;
+}
 exports.Gun = Gun;
